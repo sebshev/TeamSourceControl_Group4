@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamSourceControl_Group4
 {
-    class VideoGame
+    public class VideoGame
     {
         /// <summary>
         /// ID for each individual game
