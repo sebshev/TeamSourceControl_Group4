@@ -19,37 +19,51 @@ namespace TeamSourceControl_Group4
 
         private void addGameBtn_Click(object sender, EventArgs e)
         {
-            var p1 = new VideoGame()
+            //var p1 = new VideoGame()
+            //{
+            //    Title = "GTA 5",
+            //    Price = 19.99 ,
+            //    Rating = "ESRB Mature"
+            //};
+
+            //VideoGameDb.Insert(p1);
+
+            //var p2 = new VideoGame()
+            //{
+            //    Title = "GenShin Impact",
+            //    Price = 0 ,
+            //    Rating = "ESRB Teen"
+            //};
+
+            //VideoGameDb.Insert(p2);
+
+            //p1.Price = 15.50;
+
+            //VideoGameDb.Update(p1);
+
+            //List<VideoGame> prods = VideoGameDb.GetVideoGames();
+
+            //VideoGameDb.Delete(p1);
+
+            //prods = VideoGameDb.GetVideoGames();
+            //foreach(VideoGame v in prods)
+            //{
+            //    gameLstBox.Items.Add(v.Title);
+            //}
+
+            VideoGame game = new VideoGame()
             {
-                Title = "GTA 5",
-                Price = 19.99 ,
-                Rating = "ESRB Mature"
+                Title = titleTxt.Text,
+                Price = Convert.ToDouble(priceTxt.Text),
+                Rating = ratingCmbBxox.Text
             };
-
-            VideoGameDb.Insert(p1);
-
-            var p2 = new VideoGame()
+            VideoGameDb.Insert(game);
+            List<VideoGame> games = VideoGameDb.GetVideoGames();
+            foreach (VideoGame g in games)
             {
-                Title = "GenShin Impact",
-                Price = 0 ,
-                Rating = "ESRB Teen"
-            };
-
-            VideoGameDb.Insert(p2);
-
-            p1.Price = 15.50;
-
-            VideoGameDb.Update(p1);
-
-            List<VideoGame> prods = VideoGameDb.GetVideoGames();
-
-            VideoGameDb.Delete(p1);
-
-            prods = VideoGameDb.GetVideoGames();
-            foreach(VideoGame v in prods)
-            {
-                gameLstBox.Items.Add(v.Title);
+                gameLstBox.Items.Add(g.Title);
             }
+            
         }
 
         private void gameLstBox_SelectedIndexChanged(object sender, EventArgs e)
