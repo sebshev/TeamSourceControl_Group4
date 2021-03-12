@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace TeamSourceControl_Group4
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -76,9 +78,10 @@ namespace TeamSourceControl_Group4
                     gameLstBox.Items.Add(g);
                 }
             }
+            ClearData();
 
-            
-            
+
+
         }
 
         private void gameLstBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,6 +103,49 @@ namespace TeamSourceControl_Group4
                 }
             }
             
+        }
+
+        private void updateGameBtn_Click(object sender, EventArgs e)
+        {
+            if (titleTxt.Text != "" && priceTxt.Text != "")
+            {
+
+                VideoGame updateGame = (VideoGame)gameLstBox.SelectedItem;
+                updateGame.Title = titleTxt.Text;
+                updateGame.Price = Convert.ToDouble(priceTxt.Text);
+                updateGame.Rating = ratingCmbBxox.Text;
+                VideoGameDb.Update(updateGame);
+                gameLstBox.Items.Clear();
+                List<VideoGame> games = VideoGameDb.GetVideoGames();
+                foreach (VideoGame g in games)
+                {
+                    gameLstBox.Items.Add(g);
+                }
+
+                ClearData();
+            }
+        }
+
+        private void gameLstBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            VideoGame clickedItem = (VideoGame)gameLstBox.SelectedItem;
+
+            List<VideoGame> games = VideoGameDb.GetVideoGames();
+            foreach (VideoGame g in games)
+            {
+                titleTxt.Text = clickedItem.Title;
+                priceTxt.Text = Convert.ToString(clickedItem.Price);
+                ratingCmbBxox.Text = clickedItem.Rating;
+
+            }
+            
+        }
+
+        private void ClearData()
+        {
+            titleTxt.Text = "";
+            priceTxt.Text = "";
+            ratingCmbBxox.Text = "";
         }
     }
 }
