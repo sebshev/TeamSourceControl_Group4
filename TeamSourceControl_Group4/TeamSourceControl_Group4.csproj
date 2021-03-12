@@ -55,9 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202102050438269_Initial.cs" />
-    <Compile Include="Migrations\202102050438269_Initial.Designer.cs">
-      <DependentUpon>202102050438269_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202103112007014_Initial.cs" />
+    <Compile Include="Migrations\202103112007014_Initial.Designer.cs">
+      <DependentUpon>202103112007014_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="VideoGame.cs" />
@@ -73,6 +73,9 @@
     <Compile Include="VideoGameDb.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103112007014_Initial.resx">
+      <DependentUpon>202103112007014_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

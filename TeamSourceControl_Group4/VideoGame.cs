@@ -30,5 +30,10 @@ namespace TeamSourceControl_Group4
         /// The price of the game
         /// </summary>
         public double Price { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Title}";
+        }
     }
 }
