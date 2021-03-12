@@ -110,6 +110,7 @@ namespace TeamSourceControl_Group4
             this.deleteGameBtn.TabIndex = 11;
             this.deleteGameBtn.Text = "Delete Game";
             this.deleteGameBtn.UseVisualStyleBackColor = true;
+            this.deleteGameBtn.Click += new System.EventHandler(this.deleteGameBtn_Click);
             // 
             // addGameBtn
             // 

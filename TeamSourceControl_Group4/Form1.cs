@@ -15,10 +15,16 @@ namespace TeamSourceControl_Group4
         public Form1()
         {
             InitializeComponent();
+            List<VideoGame> games = VideoGameDb.GetVideoGames();
+            foreach (VideoGame g in games)
+            {
+                gameLstBox.Items.Add(g);
+            }
         }
 
         private void addGameBtn_Click(object sender, EventArgs e)
         {
+            #region Test Code
             //var p1 = new VideoGame()
             //{
             //    Title = "GTA 5",
@@ -50,25 +56,50 @@ namespace TeamSourceControl_Group4
             //{
             //    gameLstBox.Items.Add(v.Title);
             //}
+            #endregion
 
-            VideoGame game = new VideoGame()
+            if (priceTxt.Text != "" ||
+                titleTxt.Text != "" ||
+                ratingCmbBxox.SelectedIndex != -1)
             {
-                Title = titleTxt.Text,
-                Price = Convert.ToDouble(priceTxt.Text),
-                Rating = ratingCmbBxox.Text
-            };
-            VideoGameDb.Insert(game);
-            List<VideoGame> games = VideoGameDb.GetVideoGames();
-            foreach (VideoGame g in games)
-            {
-                gameLstBox.Items.Add(g.Title);
+                VideoGame game = new VideoGame()
+                {
+                    Title = titleTxt.Text,
+                    Price = Convert.ToDouble(priceTxt.Text),
+                    Rating = ratingCmbBxox.Text
+                };
+                gameLstBox.Items.Clear();
+                VideoGameDb.Insert(game);
+                List<VideoGame> games = VideoGameDb.GetVideoGames();
+                foreach (VideoGame g in games)
+                {
+                    gameLstBox.Items.Add(g);
+                }
             }
+
+            
             
         }
 
         private void gameLstBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void deleteGameBtn_Click(object sender, EventArgs e)
+        {
+            if (gameLstBox.SelectedItem != null)
+            {
+                VideoGame gameToBeDeleted = (VideoGame)gameLstBox.SelectedItem;
+                VideoGameDb.Delete(gameToBeDeleted);
+                gameLstBox.Items.Clear();
+                List<VideoGame> games = VideoGameDb.GetVideoGames();
+                foreach (VideoGame g in games)
+                {
+                    gameLstBox.Items.Add(g);
+                }
+            }
+            
         }
     }
 }
